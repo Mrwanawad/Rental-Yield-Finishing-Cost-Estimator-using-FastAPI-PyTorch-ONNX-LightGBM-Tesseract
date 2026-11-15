@@ -5,6 +5,9 @@ finishing packages (basic / standard / premium) with a line-item breakdown, pred
 range for each package, and returns gross/net yield, payback and the package with the best 10-year value,
 plus a PDF report. Built for the "Nawy Unlocked" use case (finishing + rentals). Design: [architecture.md](architecture.md).
 
+Live demo: https://rental-yield-finishing-cost.vercel.app (API under `/api`; Tesseract is not available on
+Vercel, so enter the unit area there for scale).
+
 ```
 plan (PNG/JPG/PDF) -> OpenCV pre-process (PDF render, deskew, crop, dark-mode invert)
   -> U-Net (MobileNetV2) segmentation, ONNX Runtime CPU: wall + 6 room classes
@@ -111,6 +114,8 @@ models/                  seg.onnx, rent_q{10,50,90}.txt, cost_adj.txt + metadata
 
 ## Deploy
 
+- Vercel: [index.py](index.py) mounts the API at `/api`, [public/](public/) is the static UI. Serving deps
+  exclude pandas/lightgbm (trees are exported to JSON) to stay under the 500 MB function limit. `vercel deploy --prod`.
 - Docker: `docker build -t ryfc . && docker run -p 8000:8000 ryfc` (API). UI: same image with
   `streamlit run app/streamlit_app.py`.
 - Render: [render.yaml](render.yaml) defines `ryfc-api` and `ryfc-ui` (UI calls the API via `RYFC_API_URL`).
