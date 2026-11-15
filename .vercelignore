@@ -1,0 +1,13 @@
+.work
+.venv
+.pytest_cache
+.ruff_cache
+**/__pycache__
+.github
+tests
+scripts
+reports
+app
+samples
+Dockerfile
+render.yaml

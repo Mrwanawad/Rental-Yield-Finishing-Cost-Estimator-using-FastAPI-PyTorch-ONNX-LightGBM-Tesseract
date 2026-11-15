@@ -1,0 +1,27 @@
+# Rental market priors, EGP, Q4 2026. Anchored on Bayut/Property Finder asking rents
+# (e.g. New Cairo 3BR 145-150 m2: 28-38k/month; Sheikh Zayed 190 m2 premium compound: up to 70k)
+# and finished resale asking prices (~23-57k EGP/m2 in compounds).
+areas:
+  New Cairo:        {rent_per_m2: 230, sale_per_m2: 52000}
+  Sheikh Zayed:     {rent_per_m2: 235, sale_per_m2: 55000}
+  6th of October:   {rent_per_m2: 165, sale_per_m2: 38000}
+  New Capital:      {rent_per_m2: 140, sale_per_m2: 42000}
+  Madinaty:         {rent_per_m2: 175, sale_per_m2: 45000}
+  Mostakbal City:   {rent_per_m2: 150, sale_per_m2: 40000}
+  Shorouk:          {rent_per_m2: 140, sale_per_m2: 30000}
+  Alexandria:       {rent_per_m2: 150, sale_per_m2: 35000}
+compound_tier: {A: 1.35, B: 1.0, C: 0.8}
+unit_type: {apartment: 1.0, duplex: 1.05, penthouse: 1.15, townhouse: 1.1, twinhouse: 1.15, villa: 1.25}
+view: {garden: 1.06, pool: 1.08, landscape: 1.04, street: 0.95}
+finishing: {basic: 0.85, standard: 1.0, premium: 1.25}
+furnished_uplift: 0.25
+annual_rent_growth: 0.12
+
+# Yield assumptions (editable in the UI)
+yield_defaults:
+  vacancy_months: 1.0
+  management_fee: 0.10     # of collected rent, e.g. managed-rental service
+  maintenance_rate: 0.05   # of collected rent
+  discount_rate: 0.22      # EGP opportunity cost (CBE rates + premium)
+  horizon_years: 10
+  net_to_bua: 0.80         # net internal area / BUA (walls + common-area share)

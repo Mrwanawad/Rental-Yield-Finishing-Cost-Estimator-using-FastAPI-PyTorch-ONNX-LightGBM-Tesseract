@@ -1,0 +1,252 @@
+{
+  "plan_1.png": {
+    "seed": 7,
+    "net_area_m2": 181.2,
+    "rooms": [
+      {
+        "type": "bedroom",
+        "area_m2": 21.2
+      },
+      {
+        "type": "bathroom",
+        "area_m2": 3.4
+      },
+      {
+        "type": "corridor",
+        "area_m2": 4.1
+      },
+      {
+        "type": "bedroom",
+        "area_m2": 21.5
+      },
+      {
+        "type": "bedroom",
+        "area_m2": 21.2
+      },
+      {
+        "type": "living",
+        "area_m2": 72.1
+      },
+      {
+        "type": "corridor",
+        "area_m2": 5.9
+      },
+      {
+        "type": "kitchen",
+        "area_m2": 17.2
+      },
+      {
+        "type": "bathroom",
+        "area_m2": 8.9
+      },
+      {
+        "type": "balcony",
+        "area_m2": 5.7
+      }
+    ]
+  },
+  "plan_2.png": {
+    "seed": 21,
+    "net_area_m2": 219.2,
+    "rooms": [
+      {
+        "type": "bedroom",
+        "area_m2": 17.4
+      },
+      {
+        "type": "bedroom",
+        "area_m2": 17.4
+      },
+      {
+        "type": "bathroom",
+        "area_m2": 5.0
+      },
+      {
+        "type": "corridor",
+        "area_m2": 2.6
+      },
+      {
+        "type": "bedroom",
+        "area_m2": 17.3
+      },
+      {
+        "type": "living",
+        "area_m2": 107.5
+      },
+      {
+        "type": "corridor",
+        "area_m2": 5.9
+      },
+      {
+        "type": "kitchen",
+        "area_m2": 18.2
+      },
+      {
+        "type": "bathroom",
+        "area_m2": 12.9
+      },
+      {
+        "type": "balcony",
+        "area_m2": 7.4
+      },
+      {
+        "type": "balcony",
+        "area_m2": 7.4
+      }
+    ]
+  },
+  "plan_3.png": {
+    "seed": 42,
+    "net_area_m2": 207.9,
+    "rooms": [
+      {
+        "type": "bedroom",
+        "area_m2": 13.5
+      },
+      {
+        "type": "bedroom",
+        "area_m2": 13.8
+      },
+      {
+        "type": "bathroom",
+        "area_m2": 4.5
+      },
+      {
+        "type": "corridor",
+        "area_m2": 4.8
+      },
+      {
+        "type": "bathroom",
+        "area_m2": 4.6
+      },
+      {
+        "type": "corridor",
+        "area_m2": 4.0
+      },
+      {
+        "type": "bedroom",
+        "area_m2": 13.8
+      },
+      {
+        "type": "bedroom",
+        "area_m2": 13.6
+      },
+      {
+        "type": "living",
+        "area_m2": 93.8
+      },
+      {
+        "type": "corridor",
+        "area_m2": 5.0
+      },
+      {
+        "type": "kitchen",
+        "area_m2": 17.5
+      },
+      {
+        "type": "bathroom",
+        "area_m2": 11.2
+      },
+      {
+        "type": "balcony",
+        "area_m2": 8.1
+      }
+    ]
+  },
+  "plan_4.png": {
+    "seed": 105,
+    "net_area_m2": 189.2,
+    "rooms": [
+      {
+        "type": "bedroom",
+        "area_m2": 17.4
+      },
+      {
+        "type": "bathroom",
+        "area_m2": 4.4
+      },
+      {
+        "type": "corridor",
+        "area_m2": 1.6
+      },
+      {
+        "type": "bedroom",
+        "area_m2": 17.6
+      },
+      {
+        "type": "bedroom",
+        "area_m2": 17.4
+      },
+      {
+        "type": "living",
+        "area_m2": 85.7
+      },
+      {
+        "type": "corridor",
+        "area_m2": 5.8
+      },
+      {
+        "type": "kitchen",
+        "area_m2": 17.3
+      },
+      {
+        "type": "bathroom",
+        "area_m2": 9.2
+      },
+      {
+        "type": "balcony",
+        "area_m2": 6.8
+      },
+      {
+        "type": "balcony",
+        "area_m2": 5.9
+      }
+    ]
+  },
+  "plan_1.pdf": {
+    "seed": 7,
+    "net_area_m2": 181.2,
+    "rooms": [
+      {
+        "type": "bedroom",
+        "area_m2": 21.2
+      },
+      {
+        "type": "bathroom",
+        "area_m2": 3.4
+      },
+      {
+        "type": "corridor",
+        "area_m2": 4.1
+      },
+      {
+        "type": "bedroom",
+        "area_m2": 21.5
+      },
+      {
+        "type": "bedroom",
+        "area_m2": 21.2
+      },
+      {
+        "type": "living",
+        "area_m2": 72.1
+      },
+      {
+        "type": "corridor",
+        "area_m2": 5.9
+      },
+      {
+        "type": "kitchen",
+        "area_m2": 17.2
+      },
+      {
+        "type": "bathroom",
+        "area_m2": 8.9
+      },
+      {
+        "type": "balcony",
+        "area_m2": 5.7
+      }
+    ]
+  }
+}

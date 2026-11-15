@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: ryfc-api
+    runtime: docker
+    plan: starter
+    healthCheckPath: /health
+  - type: web
+    name: ryfc-ui
+    runtime: docker
+    plan: starter
+    dockerCommand: sh -c "streamlit run app/streamlit_app.py --server.port $PORT --server.address 0.0.0.0"
+    envVars:
+      - key: RYFC_API_URL
+        fromService:
+          type: web
+          name: ryfc-api
+          envVarKey: RENDER_EXTERNAL_URL

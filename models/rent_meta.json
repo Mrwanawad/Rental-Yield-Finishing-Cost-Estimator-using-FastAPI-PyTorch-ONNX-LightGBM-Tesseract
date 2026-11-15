@@ -1,0 +1,55 @@
+{
+  "conformal": 0.01391614165069342,
+  "params": {
+    "verbosity": -1,
+    "learning_rate": 0.05014059481576837,
+    "num_leaves": 44,
+    "min_data_in_leaf": 157,
+    "feature_fraction": 0.8273735795474594,
+    "bagging_fraction": 0.9,
+    "bagging_freq": 1,
+    "lambda_l2": 0.001188937983177301
+  },
+  "residual_ref": {
+    "6th of October": {
+      "mean": -0.0008,
+      "std": 0.1312
+    },
+    "Alexandria": {
+      "mean": -0.001,
+      "std": 0.1351
+    },
+    "Madinaty": {
+      "mean": 0.002,
+      "std": 0.148
+    },
+    "Mostakbal City": {
+      "mean": -0.0035,
+      "std": 0.1332
+    },
+    "New Cairo": {
+      "mean": 0.0112,
+      "std": 0.1338
+    },
+    "New Capital": {
+      "mean": -0.006,
+      "std": 0.1338
+    },
+    "Sheikh Zayed": {
+      "mean": 0.0181,
+      "std": 0.1354
+    },
+    "Shorouk": {
+      "mean": -0.0096,
+      "std": 0.1324
+    }
+  },
+  "metrics": {
+    "rent_mae": 4877.566532815442,
+    "rent_mape": 10.798869953871252,
+    "rent_baseline_mape": 24.18184634472165,
+    "rent_coverage_raw": 0.7395,
+    "rent_coverage_80": 0.7795,
+    "rent_rel_width": 0.3272708210346529
+  }
+}

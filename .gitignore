@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.venv/
+.work/
+.pytest_cache/
+.ruff_cache/
+mlruns/
+*.pt
+.env
+
+.vercel
