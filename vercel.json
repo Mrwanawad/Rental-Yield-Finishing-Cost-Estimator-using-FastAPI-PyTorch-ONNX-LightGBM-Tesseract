@@ -3,7 +3,7 @@
   "functions": {
     "index.py": {
       "maxDuration": 60,
-      "excludeFiles": "{tests/**,scripts/**,reports/**,app/**,samples/**,public/**,.work/**,.github/**,**/__pycache__/**,*.md,Dockerfile,render.yaml}"
+      "excludeFiles": "{docs/**,tests/**,scripts/**,reports/**,app/**,samples/**,public/**,.work/**,.github/**,**/__pycache__/**,*.md,Dockerfile,render.yaml}"
     }
   }
 }

@@ -1,12 +1,27 @@
 # Rental Yield & Finishing Cost Estimator
 
-Upload the floor plan of an unfinished unit. The system finds the rooms and their areas, prices three
-finishing packages (basic / standard / premium) with a line-item breakdown, predicts the monthly rent
-range for each package, and returns gross/net yield, payback and the package with the best 10-year value,
-plus a PDF report. Built for the "Nawy Unlocked" use case (finishing + rentals). Design: [architecture.md](architecture.md).
+Floor plan of an unfinished unit in, finishing budget and rental return out. Built for the "Nawy Unlocked"
+use case: help a buyer decide how to finish a unit and what it will earn.
 
-Live demo: https://rental-yield-finishing-cost.vercel.app (API under `/api`; Tesseract is not available on
-Vercel, so enter the unit area there for scale).
+<p align="center"><img src="docs/demo.gif" width="100%" alt="Demo: enter the unit area, pick a floor plan, review the detected rooms and areas, compare basic, standard and premium finishing packages with rent, yield and payback, then download the PDF report" /></p>
+
+**[Live demo](https://rental-yield-finishing-cost.vercel.app)** · [Architecture](architecture.md) · [Evaluation reports](reports/)
+
+## What it does
+
+- **Reads the plan.** Detects the rooms, their types and their areas in m2 (PNG, JPG or PDF). Low-confidence rooms are
+  flagged, and the room table is editable, so a wrong room is a one-click fix.
+- **Prices the finishing.** Three packages (basic / standard / premium) with line items in EGP (flooring, paint,
+  kitchen, bathrooms, electrical, AC, doors) and an 80% cost range.
+- **Predicts the rent.** Monthly rent range per package, calibrated so the 80% interval holds about 80% of the time,
+  with the drivers behind it (size, location, furnishing, unit type).
+- **Recommends a package.** Gross/net yield, payback and the NPV of each finishing choice over 10 years, plus a
+  black-and-white PDF report.
+
+On the live demo enter the unit area (Tesseract OCR is not available on Vercel); locally and in Docker the printed
+room dimensions can give the scale on their own.
+
+## How it works
 
 ```
 plan (PNG/JPG/PDF) -> OpenCV pre-process (PDF render, deskew, crop, dark-mode invert)
@@ -23,7 +38,8 @@ plan (PNG/JPG/PDF) -> OpenCV pre-process (PDF render, deskew, crop, dark-mode in
 
 ## Results
 
-All training data is synthetic for now (see Limitations). Full tables: [reports/](reports/).
+Two test sets: 300 held-out synthetic plans (exact ground truth for areas) and 58 real plans from the
+CubiCasa5k test split. Full tables: [reports/](reports/).
 
 | Stage | Metric | Value |
 |---|---|---|
@@ -37,7 +53,7 @@ All training data is synthetic for now (see Limitations). Full tables: [reports/
 | Rent | MAPE (baseline area rent/m2 x size: 24.2%) | 10.8% |
 | Rent | 80% interval coverage after conformal (74.0% before) | 78.0% |
 | Latency | ONNX segmentation on CPU, 512x512 | ~0.25 s |
-| Real plans (58 CubiCasa5k test) | standard finishing cost error from predicted rooms, median | 50% (not yet fine-tuned on real plans) |
+| Real plans (58 CubiCasa5k) | standard finishing cost error from predicted rooms, median | 50% (model not yet trained on real plans) |
 
 Segmentation training: v1 = 2,000 steps on line-drawing plans (best of a 6,000-step run, ImageNet MobileNetV2
 encoder); v2 = v1 fine-tuned 1,000 steps on fresh seeds that add brochure renders (room floor tones, tile grids,
@@ -60,6 +76,9 @@ pytest -q
 uvicorn ryfc.api:app --port 8000              # API (docs at /docs)
 streamlit run app/streamlit_app.py            # UI; set RYFC_API_URL to call the API instead of in-process
 ```
+
+README GIF: start the app (`uvicorn index:app --port 8020`), then `python docs/demo/scene.py` and
+`python ~/.claude/skills/demo-gif/scripts/compose.py docs/demo/build --out docs/demo.gif --fps 10 --width 900 --colors 128`.
 
 Shareable demo link: `http://localhost:8501/?demo=plan_2.png` runs a sample plan on open.
 `RYFC_WORK_DIR` moves training data, MLflow and logs off the repo drive.
@@ -109,8 +128,9 @@ models/                  seg.onnx, rent_q{10,50,90}.txt, cost_adj.txt + metadata
 - **LightGBM only (no CatBoost).** Categorical support is native and the error sits at the noise floor of the
   data; a second library would add weight without a measurable gain. Optuna tunes the median model.
 - **SHAP via LightGBM `pred_contrib`.** Same TreeSHAP values, no extra dependency.
-- **Synthetic plans instead of CubiCasa5k for now.** The 5 GB dataset could not be pulled on this machine;
-  the generator gives exact areas, which CubiCasa does not (no scale), so area error is measurable.
+- **Synthetic plans for training, CubiCasa5k for the reality check.** The generator gives exact areas (CubiCasa
+  has no metric scale), so area error is measurable; CubiCasa test plans are read straight out of the 5.5 GB Zenodo
+  zip with HTTP range requests to show the gap on real drawings ([reports/real_plans.md](reports/real_plans.md)).
 - **LLM vision** is not used for areas (precision), as planned.
 
 ## Deploy
