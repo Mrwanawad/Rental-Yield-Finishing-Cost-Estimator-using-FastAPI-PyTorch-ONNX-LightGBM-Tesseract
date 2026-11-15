@@ -27,6 +27,8 @@ class Plan:
 
 
 def load_image(data: bytes, filename: str = "") -> np.ndarray:
+    if not data:
+        raise ValueError("Empty file")
     if filename.lower().endswith(".pdf") or data[:4] == b"%PDF":
         import pypdfium2 as pdfium  # ~10 MB vs ~100 MB for PyMuPDF: keeps the serverless bundle small
 

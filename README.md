@@ -37,6 +37,7 @@ All training data is synthetic for now (see Limitations). Full tables: [reports/
 | Rent | MAPE (baseline area rent/m2 x size: 24.2%) | 10.8% |
 | Rent | 80% interval coverage after conformal (74.0% before) | 78.0% |
 | Latency | ONNX segmentation on CPU, 512x512 | ~0.25 s |
+| Real plans (58 CubiCasa5k test) | standard finishing cost error from predicted rooms, median | 50% (not yet fine-tuned on real plans) |
 
 Segmentation training: v1 = 2,000 steps on line-drawing plans (best of a 6,000-step run, ImageNet MobileNetV2
 encoder); v2 = v1 fine-tuned 1,000 steps on fresh seeds that add brochure renders (room floor tones, tile grids,
@@ -131,7 +132,9 @@ models/                  seg.onnx, rent_q{10,50,90}.txt, cost_adj.txt + metadata
 
 ## Limitations and next steps
 
-1. **Real plans.** The model has only seen generated plans. Next: pre-train on CubiCasa5k, label 200-300 local
+1. **Real plans.** The model has only seen generated plans, and it does not transfer: on 58 CubiCasa5k test
+   plans the standard finishing cost from predicted rooms is off by a median 50% (16% of plans within 10%),
+   see [reports/real_plans.md](reports/real_plans.md) (`scripts/eval_real.py`). Next: pre-train on CubiCasa5k, label 200-300 local
    developer plans in CVAT (polygons per room), fine-tune, and report the same metrics on that set. Until then
    the editable room table is the safety net, and low-confidence rooms are flagged.
 2. **Real prices and rents.** Catalog prices and rent priors are anchored on public asking prices; replace with
